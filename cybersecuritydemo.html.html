@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Advanced Cybersecurity Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --primary-dark: #2c5282;
+            --secondary: #f6ad55;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --danger: #e53e3e;
+            --success: #48bb78;
+            --gray: #718096;
+            --gray-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        body.dark-mode {
+            background-color: var(--dark);
+            color: var(--light);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode header {
+            background: linear-gradient(135deg, #1a365d, #153e75);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mode-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .mode-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        body.dark-mode .hero h1 {
+            background: linear-gradient(to right, #fff, var(--secondary));
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23ffffff" d="M30,10Q20,20,10,30Q0,40,10,50Q20,60,30,70Q40,80,50,70Q60,60,70,50Q80,40,70,30Q60,20,50,10Q40,0,30,10Z"/></svg>');
+            background-size: 50px;
+            animation: move 30s linear infinite;
+        }
+
+        @keyframes move {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .cyber-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--primary);
+        }
+
+        body.dark-mode .cyber-card {
+            background-color: #2d3748;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cyber-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cyber-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cyber-card-content {
+            padding: 1.5rem;
+        }
+
+        .cyber-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        body.dark-mode .cyber-card h3 {
+            color: var(--secondary);
+        }
+
+        .cyber-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        body.dark-mode .cyber-card p {
+            color: var(--gray-light);
+        }
+
+        .stats {
+            background-color: var(--primary);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        body.dark-mode .stats {
+            background-color: #1a365d;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .threat-visualization {
+            padding: 4rem 0;
+            background-color: var(--gray-light);
+        }
+
+        body.dark-mode .threat-visualization {
+            background-color: #2d3748;
+        }
+
+        .threat-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .threat-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .threat-animation {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: white;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .threat-animation {
+            background-color: #1a202c;
+        }
+
+        .node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--success);
+            transform: translate(-50%, -50%);
+        }
+
+        .malicious {
+            background-color: var(--danger);
+        }
+
+        .connection {
+            position: absolute;
+            height: 2px;
+            background-color: var(--gray);
+            transform-origin: left center;
+        }
+
+        .newsletter {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-align: center;
+        }
+
+        body.dark-mode .newsletter {
+            background: linear-gradient(135deg, #1a365d, #153e75);
+        }
+
+        .newsletter h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: left;
+            margin: 1rem 0;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-option input {
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        body.dark-mode footer {
+            background-color: #0f172a;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        /* Chatbot styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-window {
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+        }
+
+        body.dark-mode .chatbot-window {
+            background-color: #2d3748;
+            color: white;
+        }
+
+        .chatbot-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .chatbot-header {
+            background-color: #1a365d;
+        }
+
+        .chatbot-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+
+        .bot-message {
+            background-color: var(--gray-light);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        body.dark-mode .bot-message {
+            background-color: #4a5568;
+            color: white;
+        }
+
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        body.dark-mode .user-message {
+            background-color: #2b6cb0;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        body.dark-mode .chatbot-input {
+            border-top: 1px solid #4a5568;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 20px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        body.dark-mode .chatbot-input input {
+            background-color: #4a5568;
+            border: 1px solid #4a5568;
+            color: white;
+        }
+
+        .chatbot-input button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chatbot-input button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Threat animation styles */
+        .firewall {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: var(--secondary);
+            bottom: 50px;
+            left: 0;
+            z-index: 2;
+        }
+
+        .server {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background-color: var(--gray);
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .server i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .threat-container {
+                flex-direction: column;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        /* Cyber pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .cyber-pulse {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(75, 192, 192, 0.6);
+            animation: pulse 2s infinite;
+        }
+
+        /* Hacker typing animation */
+        .typing {
+            display: inline-block;
+            position: relative;
+        }
+
+        .typing::after {
+            content: "|";
+            position: absolute;
+            right: -5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="animated-bg"></div>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberShield</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#threats">Threats</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mode-toggle" id="modeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Advanced Cybersecurity Protection</h1>
+            <p>Defend your digital assets with our cutting-edge security solutions powered by AI and machine learning. Real-time threat detection and prevention for businesses of all sizes.</p>
+            <div>
+                <a href="#contact" class="btn">Get Protected</a>
+                <a href="#services" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="services">
+        <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">Our Security Services</h2>
+        <div class="cyber-grid">
+            <div class="cyber-card">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Network Security">
+                <div class="cyber-card-content">
+                    <h3>Network Protection</h3>
+                    <p>Comprehensive security for your network infrastructure with advanced firewall protection, intrusion detection, and prevention systems.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+            <div class="cyber-card">
+                <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Cloud Security">
+                <div class="cyber-card-content">
+                    <h3>Cloud Security</h3>
+                    <p>End-to-end protection for your cloud environments with data encryption, access control, and continuous monitoring.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+            <div class="cyber-card">
+                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Threat Intelligence">
+                <div class="cyber-card-content">
+                    <h3>Threat Intelligence</h3>
+                    <p>Proactive identification and mitigation of emerging threats with our global threat intelligence network.</p>
+                    <a href="#" class="btn">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <h2 style="margin-bottom: 3rem; font-size: 2rem;">Cybersecurity in Numbers</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="threatsBlocked">0</div>
+                    <div class="stat-label">Threats Blocked Daily</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="enterprisesSecured">0</div>
+                    <div class="stat-label">Enterprises Secured</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="responseTime">0</div>
+                    <div class="stat-label">Avg. Response Time (ms)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="uptime">0</div>
+                    <div class="stat-label">System Uptime (%)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="threat-visualization" id="threats">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2rem;">Real-time Threat Visualization</h2>
+            <div class="threat-container">
+                <div class="threat-content">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary);">How Cyber Attacks Happen</h3>
+                    <p style="margin-bottom: 1.5rem;">Our interactive visualization demonstrates common attack vectors in real-time. Watch as malicious nodes (red) attempt to breach secure systems while our defenses (blue) protect critical assets.</p>
+                    <p>Each connection represents a potential attack path. The firewall (yellow bar) filters out malicious traffic while allowing legitimate connections.</p>
+                </div>
+                <div class="threat-animation" id="threatAnimation">
+                    <div class="firewall"></div>
+                    <div class="server">
+                        <i class="fas fa-database"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter" id="contact">
+        <div class="container">
+            <h2 style="font-size: 2rem;">Stay Informed</h2>
+            <p>Subscribe to our cybersecurity newsletter for the latest threat alerts, security tips, and company updates.</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+                <div class="radio-group">
+                    <label>Email Preferences:</label>
+                    <div class="radio-option">
+                        <input type="radio" id="daily" name="frequency" value="daily" checked>
+                        <label for="daily">Daily Threat Briefings</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="weekly" name="frequency" value="weekly">
+                        <label for="weekly">Weekly Security Digest</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="monthly" name="frequency" value="monthly">
+                        <label for="monthly">Monthly Newsletter</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CyberShield</h3>
+                    <p>Advanced cybersecurity solutions for the modern digital landscape.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Network Security</a></li>
+                        <li><a href="#">Cloud Protection</a></li>
+                        <li><a href="#">Threat Intelligence</a></li>
+                        <li><a href="#">Incident Response</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Whitepapers</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Threat Reports</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CyberShield. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>CyberShield Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Hello! I'm your cybersecurity assistant. How can I help you today?
+                </div>
+                <div class="message bot-message">
+                    You can ask me about:<br>
+                    - Common threats<br>
+                    - Security best practices<br>
+                    - Our services<br>
+                    - Incident reporting
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your question...">
+                <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        // Dark mode toggle
+        const modeToggle = document.getElementById('modeToggle');
+        const body = document.body;
+        const icon = modeToggle.querySelector('i');
+
+        // Check for saved user preference or use system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const currentMode = localStorage.getItem('mode') || (prefersDark ? 'dark' : 'light');
+
+        if (currentMode === 'dark') {
+            body.classList.add('dark-mode');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        modeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('mode', 'dark');
+            } else {
+                icon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('mode', 'light');
+            }
+        });
+
+        // Counter animation for stats
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                if (id === 'uptime') {
+                    obj.innerHTML = value + '.' + Math.floor((progress * (99 - 0) + 0));
+                } else {
+                    obj.innerHTML = value.toLocaleString();
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start animations when stats section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue('threatsBlocked', 0, 12500000, 2000);
+                    animateValue('enterprisesSecured', 0, 8500, 2000);
+                    animateValue('responseTime', 0, 12, 2000);
+                    animateValue('uptime', 0, 99, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Threat visualization animation
+        const threatAnimation = document.getElementById('threatAnimation');
+        let nodes = [];
+        let connections = [];
+
+        function createNetwork() {
+            // Clear existing nodes and connections
+            threatAnimation.querySelectorAll('.node, .connection').forEach(el => el.remove());
+            nodes = [];
+            connections = [];
+            
+            // Create server node
+            const serverNode = document.createElement('div');
+            serverNode.className = 'node';
+            serverNode.style.left = '50%';
+            serverNode.style.top = '70%';
+            threatAnimation.appendChild(serverNode);
+            nodes.push({ element: serverNode, x: 0.5, y: 0.7, malicious: false });
+            
+            // Create regular nodes
+            for (let i = 0; i < 15; i++) {
+                createNode(false);
+            }
+            
+            // Create malicious nodes
+            for (let i = 0; i < 5; i++) {
+                createNode(true);
+            }
+            
+            // Create connections
+            for (let i = 0; i < 20; i++) {
+                createConnection();
+            }
+            
+            // Animate connections
+            animateConnections();
+        }
+
+        function createNode(isMalicious) {
+            const node = document.createElement('div');
+            node.className = `node ${isMalicious ? 'malicious' : ''}`;
+            
+            const x = Math.random() * 0.8 + 0.1; // 10% to 90% of container
+            const y = Math.random() * 0.5 + 0.1; // 10% to 60% of container
+            
+            node.style.left = `${x * 100}%`;
+            node.style.top = `${y * 100}%`;
+            
+            threatAnimation.appendChild(node);
+            nodes.push({ element: node, x, y, malicious: isMalicious });
+            
+            // Add pulsing effect to malicious nodes
+            if (isMalicious) {
+                setInterval(() => {
+                    const pulse = document.createElement('div');
+                    pulse.className = 'pulse-circle';
+                    pulse.style.width = '20px';
+                    pulse.style.height = '20px';
+                    pulse.style.left = `${x * 100}%`;
+                    pulse.style.top = `${y * 100}%`;
+                    threatAnimation.appendChild(pulse);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        pulse.remove();
+                    }, 2000);
+                }, 3000);
+            }
+            
+            return node;
+        }
+
+        function createConnection() {
+            if (nodes.length < 2) return;
+            
+            const node1 = nodes[Math.floor(Math.random() * nodes.length)];
+            const node2 = nodes[Math.floor(Math.random() * nodes.length)];
+            
+            if (node1 === node2) return;
+            
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            
+            // Calculate position and angle
+            const x1 = node1.x * threatAnimation.offsetWidth;
+            const y1 = node1.y * threatAnimation.offsetHeight;
+            const x2 = node2.x * threatAnimation.offsetWidth;
+            const y2 = node2.y * threatAnimation.offsetHeight;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            connection.style.width = `${length}px`;
+            connection.style.left = `${x1}px`;
+            connection.style.top = `${y1}px`;
+            connection.style.transform = `rotate(${angle}deg)`;
+            
+            // Color based on node types
+            if (node1.malicious || node2.malicious) {
+                connection.style.backgroundColor = 'rgba(229, 62, 62, 0.5)';
+            }
+            
+            threatAnimation.appendChild(connection);
+            connections.push({ element: connection, node1, node2 });
+            
+            return connection;
+        }
+
+        function animateConnections() {
+            connections.forEach(conn => {
+                // Randomly blink connections
+                if (Math.random() > 0.7) {
+                    setInterval(() => {
+                        conn.element.style.opacity = '0.2';
+                        setTimeout(() => {
+                            conn.element.style.opacity = '1';
+                        }, 300);
+                    }, Math.random() * 3000 + 1000);
+                }
+                
+                // Randomly change malicious connections to show attacks
+                if (conn.node1.malicious || conn.node2.malicious) {
+                    setInterval(() => {
+                        conn.element.style.width = `${parseInt(conn.element.style.width) * 1.05}px`;
+                        setTimeout(() => {
+                            conn.element.style.width = `${parseInt(conn.element.style.width) / 1.05}px`;
+                        }, 500);
+                    }, Math.random() * 5000 + 2000);
+                }
+            });
+        }
+
+        // Initialize threat visualization when in view
+        const threatObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    createNetwork();
+                    threatObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        threatObserver.observe(threatAnimation);
+
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const chatbotSend = document.getElementById('chatbotSend');
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+        });
+
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function handleUserInput() {
+            const userInput = chatbotInput.value.trim();
+            if (!userInput) return;
+            
+            addUserMessage(userInput);
+            chatbotInput.value = '';
+            
+            // Simulate typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'message bot-message typing';
+            typingIndicator.textContent = 'Typing';
+            chatbotMessages.appendChild(typingIndicator);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            
+            // Process after delay
+            setTimeout(() => {
+                typingIndicator.remove();
+                const response = getBotResponse(userInput);
+                addBotMessage(response);
+            }, 1500);
+        }
+
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+            
+            if (input.includes('hello') || input.includes('hi')) {
+                return "Hello! How can I assist you with cybersecurity today?";
+            } else if (input.includes('threat') || input.includes('attack')) {
+                return "Common cybersecurity threats include:<br>- Phishing attacks<br>- Ransomware<br>- DDoS attacks<br>- SQL injection<br>- Malware infections<br>Would you like more details about any specific threat?";
+            } else if (input.includes('service') || input.includes('offer')) {
+                return "CyberShield offers:<br>- Network security<br>- Cloud protection<br>- Threat intelligence<br>- Incident response<br>- Security consulting<br>Visit our Services section for more information.";
+            } else if (input.includes('contact') || input.includes('reach')) {
+                return "You can contact our security team at:<br>Email: security@cybershield.example<br>Phone: +1 (555) 123-4567<br>Emergency 24/7 line: +1 (555) 987-6543";
+            } else if (input.includes('password') || input.includes('secure')) {
+                return "For strong password security:<br>- Use at least 12 characters<br>- Include numbers, symbols, and mixed case<br>- Don't reuse passwords<br>- Consider a password manager<br>- Enable two-factor authentication (2FA)";
+            } else {
+                return "I'm not sure I understand. Could you rephrase your question? I can help with:<br>- Security threats<br- Our services<br>- Best practices<br>- Incident reporting";
+            }
+        }
+
+        chatbotSend.addEventListener('click', handleUserInput);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleUserInput();
+        });
+
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const frequency = document.querySelector('input[name="frequency"]:checked').value;
+            
+            // Show confirmation
+            alert(`Thank you for subscribing! You'll receive ${frequency} cybersecurity updates at ${email}.`);
+            newsletterForm.reset();
+        });
+
+        // Add cyber pulse effect on click
+        document.addEventListener('click', (e) => {
+            const pulse = document.createElement('div');
+            pulse.className = 'cyber-pulse';
+            
+            const circle = document.createElement('div');
+            circle.className = 'pulse-circle';
+            circle.style.left = `${e.clientX - 10}px`;
+            circle.style.top = `${e.clientY - 10}px`;
+            
+            pulse.appendChild(circle);
+            document.body.appendChild(pulse);
+            
+            // Remove after animation
+            setTimeout(() => {
+                pulse.remove();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
